@@ -604,8 +604,8 @@ def inference(req: ServeTTSRequest):
             ref_folder, AUDIO_EXTENSIONS, recursive=True, sort=False
         )
 
-        if req.use_memory_cache == "never" or (
-            req.use_memory_cache == "on-demand" and len(prompt_tokens) == 0
+        if req.use_memory_cache == "off" or (
+            req.use_memory_cache == "on" and len(prompt_tokens) == 0
         ):
             prompt_tokens = [
                 encode_reference(
@@ -626,8 +626,8 @@ def inference(req: ServeTTSRequest):
         # Parse reference audio aka prompt
         refs = req.references
 
-        if req.use_memory_cache == "never" or (
-            req.use_memory_cache == "on-demand" and len(prompt_tokens) == 0
+        if req.use_memory_cache == "off" or (
+            req.use_memory_cache == "on" and len(prompt_tokens) == 0
         ):
             prompt_tokens = [
                 encode_reference(
