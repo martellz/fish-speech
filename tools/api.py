@@ -645,6 +645,8 @@ def inference(req: ServeTTSRequest):
         set_seed(req.seed)
         logger.warning(f"set seed: {req.seed}")
 
+    logger.warning('req.text: {}'.format(req.text))
+
     # LLAMA Inference
     request = dict(
         device=decoder_model.device,
@@ -761,6 +763,8 @@ async def api_invoke_model(
             decoder_model.spec_transform.sample_rate,
             format=req.format,
         )
+
+        torch.cuda.empty_cache()
 
         return StreamResponse(
             iterable=buffer_to_async_generator(buffer.getvalue()),
