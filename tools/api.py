@@ -1,3 +1,4 @@
+import gc
 import io
 import os
 import queue
@@ -764,7 +765,9 @@ async def api_invoke_model(
             format=req.format,
         )
 
-        torch.cuda.empty_cache()
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
         return StreamResponse(
             iterable=buffer_to_async_generator(buffer.getvalue()),
