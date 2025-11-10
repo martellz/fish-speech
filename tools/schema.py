@@ -164,7 +164,7 @@ class ServeTTSRequest(BaseModel):
     chunk_length: Annotated[int, conint(ge=100, le=300, strict=True)] = 200
     # Audio format
     format: Literal["wav", "pcm", "mp3"] = "wav"
-    mp3_bitrate: Literal[64, 128, 192] = 128
+    # mp3_bitrate: Literal[64, 128, 192] = 128
     # References audios for in-context learning
     references: list[ServeReferenceAudio] = []
     # Reference id
@@ -175,8 +175,8 @@ class ServeTTSRequest(BaseModel):
     use_memory_cache: Literal["on", "off"] = "off"
     # Normalize text for en & zh, this increase stability for numbers
     normalize: bool = True
-    mp3_bitrate: Optional[int] = 64
-    opus_bitrate: Optional[int] = -1000
+    # mp3_bitrate: Optional[int] = 64
+    # opus_bitrate: Optional[int] = -1000
     # Balance mode will reduce latency to 300ms, but may decrease stability
     latency: Literal["normal", "balanced"] = "normal"
     # not usually used below
