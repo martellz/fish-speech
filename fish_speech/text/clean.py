@@ -28,6 +28,8 @@ SYMBOLS_MAPPING = {
     "；": ",",
     ";": ",",
     ":": ",",
+    "，": ",",
+    "。": ".",
 }
 
 REPLACE_SYMBOL_REGEX = re.compile(
